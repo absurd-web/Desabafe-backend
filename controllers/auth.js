@@ -22,11 +22,11 @@ const signup = (req, res, next) => {
                         Senha: passwordHash,
                     }))
                     .then(() => {
-                        res.status(200).json({message: "usuário criado"});
+                        return res.status(200).json({message: "usuário criado"});
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(502).json({message: "erro ao criar o usuário"});
+                        return res.status(502).json({message: "erro ao criar o usuário"});
                     });
                 };
             });
@@ -59,12 +59,12 @@ const login = (req, res, next) => {
             } */
             bcrypt.compare(req.body.password, dbUser.Senha, (err, compareRes) => {
                 if (err) { // error while comparing
-                    res.status(502).json({message: "error while checking user password"});
+                    return res.status(502).json({message: "error while checking user password"});
                 } else if (compareRes) { // password match
                     const token = jwt.sign({id: dbUser.UsuarioID, name: dbUser.NomeUsuario, email: req.body.email }, 'secret', { expiresIn: '1h' });
-                    res.status(200).json({message: "Logando...", "token": token});
+                    return res.status(200).json({message: "Logando...", "token": token});
                 } else { // password doesnt match
-                    res.status(401).json({message: "Senha ou email invalidos"});
+                    return res.status(401).json({message: "Senha ou email invalidos"});
                 };
             });
         };
@@ -76,7 +76,7 @@ const login = (req, res, next) => {
 
 const loginAnon = (req, res, next) => {
     const token = jwt.sign({name: 'Anônimo', email: '' }, 'secret');
-    res.status(200).json({message: "user logged in", "token": token});
+    return res.status(200).json({message: "user logged in", "token": token});
 };
 
 const deleteUser = (req,res,next) =>{
@@ -91,11 +91,11 @@ const deleteUser = (req,res,next) =>{
                 where: { email: req.body.email },
             })
             .then(() => {
-                res.status(200).json({message: "usuário excluido"});
+                return res.status(200).json({message: "usuário excluido"});
             })
             .catch(err => {
                 console.log(err);
-                res.status(502).json({message: "erro ao excluir o usuário"});
+                return res.status(502).json({message: "erro ao excluir o usuário"});
             });
         };
     })
@@ -116,9 +116,9 @@ const isAuth = (req, res, next) => {
         return res.status(500).json({ message: err.message || 'could not decode the token' });
     };
     if (!decodedToken) {
-        res.status(401).json({ message: 'unauthorized' });
+        return res.status(401).json({ message: 'unauthorized' });
     } else {
-        res.status(200).json({ message: 'here is your resource', "token":decodedToken });
+        return res.status(200).json({ message: 'here is your resource', "token":decodedToken });
     };
 };
 
