@@ -2,6 +2,7 @@ express = require('express');
 
 var { signup, login, loginAnon, deleteUser, isAuth } = require('../controllers/auth.js');
 var { send } = require('../controllers/send.js');
+var { records } = require('../controllers/records.js');
 const router = express.Router();
 
 router.post('/login', login);
@@ -15,6 +16,8 @@ router.post('/send', send);
 router.delete('/user', deleteUser);
 
 router.get('/private', isAuth);
+
+router.get('/private-records', records);
 
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });

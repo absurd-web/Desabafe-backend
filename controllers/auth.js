@@ -61,7 +61,7 @@ const login = (req, res, next) => {
                 if (err) { // error while comparing
                     return res.status(502).json({message: "error while checking user password"});
                 } else if (compareRes) { // password match
-                    const token = jwt.sign({id: dbUser.UsuarioID, name: dbUser.NomeUsuario, email: req.body.email }, 'secret', { expiresIn: '1h' });
+                    const token = jwt.sign({id: dbUser.UsuarioID, name: dbUser.NomeUsuario, email: req.body.email, level: dbUser.Nivel }, 'secret', { expiresIn: '1h' });
                     return res.status(200).json({message: "Logando...", "token": token});
                 } else { // password doesnt match
                     return res.status(401).json({message: "Senha ou email invalidos"});
