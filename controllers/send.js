@@ -2,6 +2,7 @@ const Message = require('../models/message.js');
 const send = (req, res, next) =>{
     return Message.create(({
         Conteudo: req.body.conteudo,
+        Categoria: req.body.categoria,
         Urgente: req.body.isUrgente,
         usuarioUsuarioID: req.body.id,
     }))
