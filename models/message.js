@@ -12,6 +12,10 @@ const Message = sequelize.define('messages', {
       type: Sequelize.STRING,
       allowNull: false,
    },
+   Categoria: {
+      type: Sequelize.STRING,
+      allowNull: false,
+   },
    Urgente: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
