@@ -6,11 +6,11 @@ const send = (req, res, next) =>{
         usuarioUsuarioID: req.body.id,
     }))
     .then(()=> {
-        res.status(200).json({message: "mensagem enviada"});
+        return res.status(200).json({message: "mensagem enviada"});
     })
     .catch(err => {
         console.log(err);
-        res.status(502).json({message: "erro ao enviar a mensagem"});
+        return res.status(502).json({message: "erro ao enviar a mensagem"});
     });
 }
 module.exports = {send};
