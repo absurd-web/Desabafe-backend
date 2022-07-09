@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const signup = (req, res, next) => {
     // checks if email already exists
     User.findOne({ where : {
-        email: req.body.email, 
+        Email: req.body.email, 
     }})
     .then(dbUser => {
         if (dbUser) {
@@ -44,7 +44,7 @@ const signup = (req, res, next) => {
 const login = (req, res, next) => {
     // checks if email exists
     User.findOne({ where : {
-        email: req.body.email, 
+        Email: req.body.email, 
     }})
     .then(dbUser => {
         if (!dbUser) {
@@ -81,7 +81,7 @@ const loginAnon = (req, res, next) => {
 
 const deleteUser = (req,res,next) =>{
     User.findOne({ where : {
-        email: req.body.email, 
+        Email: req.body.email, 
     }})
     .then(dbUser => {
         if (!dbUser) {
