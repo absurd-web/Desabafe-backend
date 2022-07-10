@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 const sequelize = require('../utils/database.js');
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
-    const {count, rows} = Message.findAndCountAll({
+    Message.findAndCountAll({
         attributes: ['Categoria', [sequelize.fn('count', sequelize.col('Categoria')), 'cnt']],
         group: "Categoria",
     })
-    .then(()=>{
+    .then((count,rows)=>{
         if(count != 0){
             return res.status(200).json({count: count,rows: rows});
         }else{
