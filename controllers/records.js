@@ -6,9 +6,9 @@ const records = (req, res, next) =>{
         attributes: ['Categoria', [sequelize.fn('count', sequelize.col('Categoria')), 'cnt']],
         group: "Categoria",
     })
-    .then((count,rows)=>{
+    .then((db)=>{
         if(count != 0){
-            return res.status(200).json({count: count,rows: rows});
+            return res.status(200).json(db);
         }else{
             return res.status(404).json({message: "Nenhum registro encontrado"});
         }
