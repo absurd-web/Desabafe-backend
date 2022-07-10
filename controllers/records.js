@@ -7,7 +7,7 @@ const records = (req, res, next) =>{
         group: "Categoria",
     })
     .then((db)=>{
-        if(count != 0){
+        if(db.count != 0){
             return res.status(200).json(db);
         }else{
             return res.status(404).json({message: "Nenhum registro encontrado"});
