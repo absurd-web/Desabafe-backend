@@ -3,11 +3,7 @@ const sequelize = require('../utils/database.js');
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
     Message.findAndCountAll({
-        attributes: {
-            include: [
-                [sequelize.fn('count', sequelize.col('Categoria')), 'cnt']
-            ]
-        },
+        attributes: ['Categoria', 'Conteudo', [sequelize.fn('count', sequelize.col('Categoria')), 'cnt'],[sequelize.fn('count', sequelize.col('Conteudo')), 'cnt']],
         group: "Categoria",
     })
     .then((db)=>{
