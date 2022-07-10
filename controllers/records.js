@@ -3,7 +3,7 @@ const sequelize = require('../utils/database.js');
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
     Message.findAndCountAll({
-        attributes: ['Categoria', [sequelize.fn('count', sequelize.col('Categoria')), 'cnt']],
+        attributes: ['Conteudo','Categoria', 'usuarioUsuarioID',[sequelize.fn('count', sequelize.col('Categoria')), 'cnt']],
         group: "Categoria",
     })
     .then((db)=>{
