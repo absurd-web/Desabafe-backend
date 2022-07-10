@@ -20,5 +20,7 @@ const Message = sequelize.define('messages', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
 }});
-User.hasMany(Message);
+User.hasMany(Message,{
+   onDelete: 'CASCADE',
+});
 module.exports = Message;
