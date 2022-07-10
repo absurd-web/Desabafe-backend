@@ -23,4 +23,5 @@ const Message = sequelize.define('messages', {
 User.hasMany(Message,{
    onDelete: 'CASCADE',
 });
+Message.belongsTo(User);
 module.exports = Message;
