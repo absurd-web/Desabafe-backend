@@ -17,7 +17,7 @@ router.delete('/user', deleteUser);
 
 router.get('/private', isAuth);
 
-router.get('/private-records', records);
+router.get('/records', records);
 
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });

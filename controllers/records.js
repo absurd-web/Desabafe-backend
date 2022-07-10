@@ -11,7 +11,7 @@ const records = (req, res, next) =>{
         }
     })
     .catch(err => {
-        return res.status(404).json({message: "Nenhum registro encontrado"});
+        console.log('error', err);
     });
 }
 module.exports = {records};
