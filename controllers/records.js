@@ -1,6 +1,6 @@
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
-    const {count, rows} = Message.findAndCountALl({
+    const {count, rows} = Message.findAndCountAll({
         group: "Categoria",
     })
     .then(()=>{
