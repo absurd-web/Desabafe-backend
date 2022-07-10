@@ -1,3 +1,5 @@
+const Sequelize = require('sequelize');
+const sequelize = require('../utils/database.js');
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
     const {count, rows} = Message.findAndCountAll({
