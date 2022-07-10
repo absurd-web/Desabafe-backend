@@ -1,7 +1,7 @@
 const Message = require('../models/message.js');
 const records = (req, res, next) =>{
     const {count, rows} = Message.findAndCountAll({
-        attributes: ['MessageID','*'],
+        attributes: ['Categoria', [sequelize.fn('count', sequelize.col('fCategoria')), 'cnt']],
         group: "Categoria",
     })
     .then(()=>{
