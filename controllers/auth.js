@@ -18,7 +18,7 @@ const signup = (req, res, next) => {
                     return User.create(({
                         NomeUsuario: req.body.name,
                         Email: req.body.email,
-                        Nivel: 1,
+                        Nivel: 0,
                         Senha: passwordHash,
                     }))
                     .then(() => {
